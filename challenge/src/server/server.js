@@ -16,9 +16,10 @@ dbConn.connect();
 app.post('/adicionar/', function (req, res) {
     let titulo = req.body.titulo;
     let valor = parseFloat(req.body.valor);
-    let descricao = req.body.desc;
-    dbConn.query('INSERT INTO `classificados`(`titulo`, `valor`, `descricao`) VALUES(?,?,?)',[titulo, valor, descricao], function(error, results){
+    let descricao = req.body.descricao;
+    dbConn.query('INSERT INTO `classificados`(`TITULO`, `VALOR`, `DESCRICAO`) VALUES(?,?,?)',[titulo, valor, descricao], function(error, results){
         if (error) {
+            console.log(error);
             return res.status(500).send({ message: 'erro interno' });
         }else{
             return res.send({ error: false, data: "Registro realizado com sucesso!", message: "Ok." });

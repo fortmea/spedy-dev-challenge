@@ -1,34 +1,12 @@
 import React, { Component } from 'react';
 
 export default class Adicionar extends Component {
-
     constructor(props) {
         super(props)
         this.state = { titulo: '', valor: 0.0, descricao: '' }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
-
-    /* enviar = function (e) {
-         titulo = e.titulo.getValue();
-         valor = e.valor.getValue();
-         descricao = e.descricao.getValue();
- 
-         fetch('http://localhost:3001/adicionar/', {
-             method: 'POST',
-             headers: {
-                 'Accept': 'application/json'
-             },
-             data: {
-                 'valor': valor,
-                 'titulo': titulo,
-                 'descricao': descricao
-             }
-         })
-             .then(function (response) {
-                 return response.json()
-             });
-     }*/
     handleSubmit(event) {
         const { titulo, descricao, valor } = this.state
         event.preventDefault();
@@ -39,11 +17,10 @@ export default class Adicionar extends Component {
         };
         fetch('http://localhost:3001/adicionar/', requestOptions).then(response => response.json())
         .then(data => this.setState({ error: data.error }));
+        return;
     }
     handleChange(event) {
         this.setState({
-            // Computed property names
-            // keys of the objects are computed dynamically
             [event.target.name]: event.target.value
         })
     }
@@ -52,15 +29,15 @@ export default class Adicionar extends Component {
         return (
             <form onSubmit={ this.handleSubmit }>
                 <div className="mb-3">
-                    <label class="form-label">Informe o título para o classificado</label>
+                    <label className="form-label">Informe o título para o classificado</label>
                     <input className="form-control" name="titulo" value={this.state.titulo} onChange={this.handleChange}></input>
                 </div>
                 <div className="mb-3">
-                    <label class="form-label">Informe uma descrição para o classificado</label>
+                    <label className="form-label">Informe uma descrição para o classificado</label>
                     <input className="form-control" name="descricao" value={this.state.descricao} onChange={this.handleChange}></input>
                 </div>
                 <div className="mb-3">
-                    <label class="form-label">Informe o valor para o classificado</label>
+                    <label className="form-label">Informe o valor para o classificado</label>
                     <input type="number" step="0.01" className="form-control" name="valor" value={this.state.valor} onChange={this.handleChange}></input>
                 </div>
                 <input type="submit" className="btn btn-outline-primary" />

@@ -1,41 +1,40 @@
 import React from 'react';
-import $ from 'jquery';
-import { response } from 'express';
 
 export default class ClassificadoComponent extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
-            response: "",
+            response: []
         }
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+        };
+        fetch('http://localhost:3001/listar', requestOptions)
+            .then(response => response.json())
+            .then(data => this.setState({ response: data['data'] }));
+        
     }
-
-    componentDidMount() {
-        this.fetch();
-    }
-
-    fetch() {
-        var context = this;
-
-        $.ajax({
-            url: 'http://localhost:3000',
-            method: 'GET',
-            success: function (response) {
-                context.setState({
-                    response: jQuery.parse((JSON.stringify(response)))['data'],
-                });
-            }
-        });
-    }
-
     render() {
-        for (x in response) {
-            return (
-                <div>
-                    <h1>{this.state.response[x].titulo} {this.state.response[x].descricao}</h1>
-                </div>
-            );
+        if (Object.keys(this.state.response).length === 0) {
+         return(
+            <div className="alert alert-warning" role="alert">
+            Nenhum classificado encontrado! Adicione um agora!
+          </div>
+         )   
         }
+        return (
+            this.state.response.map((classificado, index) => (
+                <div className="card border-primary text-dark mb-3" key={index}>
+                    <div className="card-header border-primary">
+                        {classificado.TITULO}
+                    </div>
+                    <div className="card-body">
+                        <p>{classificado.DESCRICAO}</p>
+                    </div>
+                </div>
+
+            ))
+        )
     }
 }
