@@ -1,0 +1,24 @@
+{
+  "name": "fortmeaapi",
+  "version": "2.0.0",
+  "description": "Api rest escrita em NodeJS para meu website pessoal.",
+  "main": "app.js",
+  "dependencies": {
+    "connect-redis": "^5.1.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mysql": "^2.18.1",
+    "nodemailer": "^6.5.0",
+    "redis": "^3.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "github.com/fortmea",
+  "license": "ISC"
+}
