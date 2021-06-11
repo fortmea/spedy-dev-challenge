@@ -20,8 +20,17 @@ export default class ClassificadoComponent extends React.Component {
     ndata(datao) {
         let data = new Date(datao);
         data.setSeconds(0, 0);
-        var stamp = data.toISOString().replace(/T/, " ").replace(/:00.000Z/, "");
-        stamp = stamp.replace("00:00", "");
+        var stamp = data.toUTCString().replace("GMT","");
+        stamp = stamp.replace("Fri","");
+        stamp = stamp.replace("Sat","");
+        stamp = stamp.replace("Thu","");
+        stamp = stamp.replace("Mon","");
+        stamp = stamp.replace("Tue","");
+        stamp = stamp.replace("Wed","");
+        stamp = stamp.replace("Sun","");
+        stamp = stamp.replace(",","");
+        stamp = stamp.replace(":00","");
+        //stamp = stamp.replace("00:00", "");
         return stamp;
     }
     render() {
