@@ -17,6 +17,7 @@ export default class Adicionar extends Component {
         };
         fetch('http://localhost:3001/adicionar/', requestOptions).then(response => response.json())
         .then(data => this.setState({ error: data.error }));
+        window.location.reload(false);
         return;
     }
     handleChange(event) {

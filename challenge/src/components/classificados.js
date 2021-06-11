@@ -1,6 +1,7 @@
 import React from 'react';
-
+import './classificados.css';
 export default class ClassificadoComponent extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -13,28 +14,35 @@ export default class ClassificadoComponent extends React.Component {
         fetch('http://localhost:3001/listar', requestOptions)
             .then(response => response.json())
             .then(data => this.setState({ response: data['data'] }));
-        
+
+    }
+
+    ndata(datao) {
+        let data = new Date(datao);
+        data.setSeconds(0, 0);
+        var stamp = data.toISOString().replace(/T/, " ").replace(/:00.000Z/, "");
+        stamp = stamp.replace("00:00", "");
+        return stamp;
     }
     render() {
-        if (Object.keys(this.state.response).length === 0) {
-         return(
-            <div className="alert alert-warning" role="alert">
-            Nenhum classificado encontrado! Adicione um agora!
-          </div>
-         )   
-        }
         return (
             this.state.response.map((classificado, index) => (
-                <div className="card border-primary text-dark mb-3" key={index}>
-                    <div className="card-header border-primary">
-                        {classificado.TITULO}
-                    </div>
-                    <div className="card-body">
-                        <p>{classificado.DESCRICAO}</p>
-                    </div>
+                <div class="col-6">
+                    < div className="card bg-light border-primary text-dark mb-3" key={index} >
+                        <div className="card-header border-primary">
+                            {classificado.TITULO}
+                        </div>
+                        <div className="card-body">
+                            <p>{classificado.DESCRICAO}</p>
+                        </div>
+                        <div className="card-footer">
+                            <p>Valor: <span className="text-info">R$ {classificado.VALOR}</span></p>
+                            <p>Data adição: <span className="text-info">{this.ndata(classificado.DATA)}</span></p>
+                        </div>
+                    </div >
                 </div>
-
             ))
+
         )
     }
 }

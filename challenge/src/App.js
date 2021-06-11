@@ -2,11 +2,12 @@ import './App.css';
 import React from 'react';
 import Adicionar from './components/adicionar';
 import ClassificadoComponent from './components/classificados';
+import ContagemComponent from './components/contagem'
 function App() {
   return (
     <div className="App">
-      <div className="container">
-        <div className="modal fade" id="modal" tabIndex="-1" aria-labelledby="modaladicionar" aria-hidden="true">
+      <div className="app">
+        <div className="modal fade text-dark" id="modal" tabIndex="-1" aria-labelledby="modaladicionar" aria-hidden="true">
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
@@ -14,7 +15,7 @@ function App() {
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div className="modal-body">
-              <Adicionar></Adicionar>
+                <Adicionar></Adicionar>
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -23,19 +24,25 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="card bg-light text-dark">
-          <div className="card-header">
-            <p>
+
+        <div className="d-flex justify-content-between">
+          <div className="p-2 bd-highlight">
+            <h1>
               Classificados
-            </p>
+            </h1>
           </div>
-          <div className="card-body">
-            <ClassificadoComponent></ClassificadoComponent>
-          </div>
-          <div className="card-footer">
-            <button className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal">
-              Adicionar classificado
+          <div className="p-2 bd-highlight" >
+            <button className="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#modal">
+              <i className="fa fa-plus-circle" aria-hidden="true"></i> Adicionar classificado
             </button>
+          </div>
+        </div>
+        <div class="row row-cols-2">
+          <ClassificadoComponent></ClassificadoComponent>
+          </div>
+        <div className="col-12">
+          <div className="d-flex text-center offset-lg-1 mb-3">
+            <ContagemComponent></ContagemComponent>
           </div>
         </div>
       </div>
