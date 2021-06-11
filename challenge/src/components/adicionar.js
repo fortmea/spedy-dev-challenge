@@ -31,15 +31,15 @@ export default class Adicionar extends Component {
             <form onSubmit={ this.handleSubmit }>
                 <div className="mb-3">
                     <label className="form-label">Informe o título para o classificado</label>
-                    <input className="form-control" name="titulo" value={this.state.titulo} onChange={this.handleChange}></input>
+                    <input className="form-control" name="titulo" value={this.state.titulo} required="required" onChange={this.handleChange}></input>
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Informe uma descrição para o classificado</label>
-                    <input className="form-control" name="descricao" value={this.state.descricao} onChange={this.handleChange}></input>
+                    <input className="form-control" name="descricao" value={this.state.descricao} required="required" onChange={this.handleChange}></input>
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Informe o valor para o classificado</label>
-                    <input type="number" step="0.01" className="form-control" name="valor" value={this.state.valor} onChange={this.handleChange}></input>
+                    <input type="number" step="0.01" className="form-control" name="valor" value={this.state.valor} required="required" onChange={this.handleChange}></input>
                 </div>
                 <input type="submit" className="btn btn-outline-primary" />
             </form>
