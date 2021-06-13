@@ -7,10 +7,10 @@ app.use(express.urlencoded({ extended: true, limit: '25mb' }));
 app.use(express.json({ limit: '25mb' }));
 app.use(cors());
 var dbConn = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'vertrigo',
-    database: 'spedy'
+    host: process.env.server,
+    user: process.env.user,
+    password: process.env.password,
+    database: process.env.database
 });
 dbConn.connect();
 app.post('/adicionar/', function (req, res) {
