@@ -11,7 +11,7 @@ export default class ClassificadoComponent extends React.Component {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' }
         };
-        fetch('https://spedy-challenge-server.herokuapp.com:3001/listar', requestOptions)
+        fetch('https://spedy-challenge-server.herokuapp.com/listar', requestOptions)
             .then(response => response.json())
             .then(data => this.setState({ response: data['data'] }));
 
